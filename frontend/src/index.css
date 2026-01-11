@@ -1,0 +1,587 @@
+@import "tailwindcss";
+
+
+
+
+/* =========================================
+   CINEMATIC DESIGN SYSTEM
+========================================= */
+
+:root {
+  /* Color Grade */
+  --color-bg-primary: #080808;      /* The Blackout */
+  --color-text-primary: #ffffff;    /* Screen Light */
+  --color-text-secondary: #b0b0b0;  /* Detail Text */
+  --color-accent: #d4af37;          /* Gold Standard */
+
+  /* Typography */
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* =========================================
+   GLOBAL RESETS
+========================================= */
+
+html,
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+/* Text rendering (cinema-grade clarity) */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   TYPOGRAPHY HIERARCHY
+========================================= */
+
+h1,
+h2,
+h3,
+h4,
+.display-text {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+p,
+span,
+li,
+.body-text {
+  font-family: var(--font-body);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* High-impact headline */
+.headline {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Accent text (gold moments) */
+.accent {
+  color: var(--color-accent);
+}
+
+/* =========================================
+   FILM GRAIN OVERLAY
+========================================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* =========================================
+   GLOW EFFECTS
+========================================= */
+
+.glow {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+}
+
+.glow-text {
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+}
+
+/* =========================================
+   HERO TITLE MASK
+========================================= */
+
+.hero-title-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Video that fills the text */
+.hero-title-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The masked headline */
+.hero-title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  text-align: center;
+
+  color: transparent;
+  background: black;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  mix-blend-mode: screen;
+}
+
+/* Line wrapper (for animation control) */
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+/* =========================================
+   CURTAIN INTRO
+========================================= */
+
+.curtain-panel {
+  width: 50%;
+  height: 100%;
+  background: #000;
+}
+
+.curtain-panel.left {
+  transform-origin: left;
+}
+
+.curtain-panel.right {
+  transform-origin: right;
+}
+
+/* =========================================
+   MOUSE SPOTLIGHT
+========================================= */
+
+.spotlight {
+  background: radial-gradient(
+    600px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
+  transition: background 0.1s linear;
+}
+
+/* =========================================
+   CINEMATIC CTA
+========================================= */
+
+.cta-circle {
+  background: rgba(212, 175, 55, 0.04);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-circle:hover {
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.35);
+  transform: scale(1.08);
+}
+
+.cta-text {
+  line-height: 1.4;
+}
+
+/* =========================================
+   CONFLICT SECTION
+========================================= */
+
+.bg-static {
+  background: #121212;
+  background-image: url("/noise.png");
+}
+
+.conflict-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.05;
+}
+
+.conflict-body {
+  color: var(--color-secondary);
+  max-width: 520px;
+}
+
+.conflict-body .bold {
+  color: white;
+  font-weight: 600;
+}
+
+.danger-word {
+  position: relative;
+  color: white;
+  cursor: default;
+}
+
+/* Flash red danger */
+.danger-word::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: rgba(255, 0, 0, 0.2);
+  opacity: 0;
+  z-index: -1;
+}
+.iphone-wrapper {
+  position: relative;
+  width: 280px;
+  aspect-ratio: 9 / 19;
+  border-radius: 32px;
+  overflow: hidden;
+  background: black;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+}
+
+.iphone-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.link-overlay {
+  position: absolute;
+  inset: 0;
+  background: white;
+  color: black;
+  padding: 24px;
+  opacity: 0;
+}
+
+.link-overlay ul {
+  list-style: none;
+  padding: 0;
+}
+
+.link-overlay li {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.disconnect {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-size: 24px;
+  opacity: 0;
+}
+
+/* BASE */
+.vision-section {
+  background: #050505;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* INTRO */
+.vision-intro {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.vision-text {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  letter-spacing: -0.02em;
+}
+
+.vision-text.secondary {
+  opacity: 0;
+}
+
+.vision-sub {
+  margin-top: 2rem;
+  opacity: 0.7;
+  font-size: 1.1rem;
+}
+
+/* HORIZONTAL */
+.vision-pin {
+  height: 100vh;
+}
+
+.vision-track {
+  display: flex;
+  height: 100%;
+}
+
+.vision-panel {
+  min-width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8vw;
+  gap: 4rem;
+}
+
+/* MEDIA */
+.panel-media video,
+.panel-media img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.cinematic {
+  filter: contrast(1.15) saturate(1.25) brightness(0.95);
+}
+
+/* COPY */
+.panel-copy h2 {
+  font-family: "Playfair Display", serif;
+  /* font-size: 3rem; */
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.panel-copy p {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  max-width: 420px;
+}
+
+/* PARALLAX */
+.parallax-bg {
+  will-change: transform;
+}
+
+/* MOBILE FALLBACK */
+@media (max-width: 768px) {
+  .vision-pin {
+    height: auto;
+  }
+
+  .vision-track {
+    flex-direction: column;
+  }
+
+  .vision-panel {
+    grid-template-columns: 1fr;
+    padding: 12vh 6vw;
+  }
+    .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* CINEMATIC GRADE */
+
+.cinematic-grade {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(212, 175, 55, 0.08),
+      rgba(0, 0, 0, 0.35)
+    );
+  mix-blend-mode: overlay;
+}
+
+.cta-final {
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  color: black;
+  font-family: serif;
+  font-size: 1.25rem;
+  padding: 1.4rem 3.5rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 0 rgba(212, 175, 55, 0.0);
+}
+
+.cta-final:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 80px rgba(212, 175, 55, 0.4);
+}
+.input-cinematic {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+ padding: 16px 6px;
+  font-size: 1.05rem;
+  color: white;
+  outline: none;
+   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-cinematic::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+.input-cinematic:focus {
+  border-color: #d4af37;
+   box-shadow: 0 8px 30px rgba(212,175,55,0.22);
+}
+
+
+/* =========================================
+   MODAL CLOSE BUTTON
+========================================= */
+
+.modal-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  color: white;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+
+  transition: all 0.3s ease;
+  z-index: 60;
+}
+
+.modal-close:hover {
+  color: #d4af37;
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 0 30px rgba(212,175,55,0.35);
+}
+
+/* =========================================
+   CINEMATIC SELECT
+========================================= */
+
+select.input-cinematic {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #d4af37 50%),
+    linear-gradient(135deg, #d4af37 50%, transparent 50%);
+  background-position:
+    calc(100% - 16px) 55%,
+    calc(100% - 10px) 55%;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+select.input-cinematic option {
+  background: #0b0b0b;
+  color: white;
+}
+
+.input-cinematic:focus {
+  border-color: #d4af37;
+  box-shadow: 0 6px 30px rgba(212,175,55,0.25);
+}
+
+.modal-open body::before {
+  opacity: 0.08;
+}
+
+
+/* =========================================
+   GLOBAL SCROLLBAR (CINEMATIC)
+========================================= */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212,175,55,0.5) transparent;
+}
+
+/* Webkit Browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(212,175,55,0.8),
+    rgba(184,150,46,0.6)
+  );
+  border-radius: 999px;
+  border: 2px solid #080808; /* inset look */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212,175,55,1);
+}
+
+/* =========================================
+   SCRIPT ACT CARDS (DARK CINEMATIC)
+========================================= */
+
+.script-act {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.01)
+  );
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.script-act:hover {
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+  border-color: rgba(212,175,55,0.35);
+}
+
+/* Icon */
+.script-act span {
+  display: inline-block;
+  font-size: 2.2rem;
+  opacity: 0.9;
+}
+
+/* Title */
+.script-act h3 {
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+/* Subtitle */
+.script-act p.uppercase {
+  color: rgba(212,175,55,0.8);
+}
+
+/* Body copy */
+.script-act p:last-child {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
