@@ -5,7 +5,7 @@ export default function ProjectProposalForm({ onClose }) {
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState(null);
 
-setError("Submission failed. Please try again.");
+
 
   const [formData, setFormData] = useState({
     role: "",
@@ -42,8 +42,10 @@ setError("Submission failed. Please try again.");
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+   setError(null); 
+
 if (formData.budget === "Not Yet Defined") {
-  alert("Please select an approved budget range to continue.");
+   setError("Please select an approved budget range to continue.");
   return;
 }
  setLoading(true);
@@ -69,7 +71,7 @@ if (formData.budget === "Not Yet Defined") {
     setSubmitted(true);
   } catch (err) {
     console.error("Proposal submit error:", err);
-    alert("Submission failed. Please try again later.");
+     setError("Submission failed. Please try again.");
   }finally {
     setLoading(false);
   }
