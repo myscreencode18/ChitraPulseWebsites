@@ -3,6 +3,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 export default function ProjectProposalForm({ onClose }) {
   const [submitted, setSubmitted] = useState(false);
 const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+
+setError("Submission failed. Please try again.");
 
   const [formData, setFormData] = useState({
     role: "",
@@ -326,6 +329,11 @@ if (formData.budget === "Not Yet Defined") {
 >
    {loading ? "SENDING TREATMENT…" : "SUBMIT TREATMENT FOR REVIEW"}
 </button>
+{error && (
+  <p className="text-red-400 text-sm mt-4 text-center">
+    {error}
+  </p>
+)}
 
 
         </form>

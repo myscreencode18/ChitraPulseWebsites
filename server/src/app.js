@@ -4,6 +4,8 @@ import cors from "cors";
 import proposalRoutes from "./routes/proposal.routes.js";
 
 const app = express();
+app.set("trust proxy", 1);
+
 app.use(
   cors({
     origin: [
