@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-
+const API_URL = import.meta.env.VITE_API_URL;
 export default function ProjectProposalForm({ onClose }) {
   const [submitted, setSubmitted] = useState(false);
+const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     role: "",
@@ -35,17 +36,42 @@ export default function ProjectProposalForm({ onClose }) {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+if (formData.budget === "Not Yet Defined") {
+  alert("Please select an approved budget range to continue.");
+  return;
+}
+ setLoading(true);
 
-    if (formData.budget === "Not Yet Defined") {
-      return;
+
+  try {
+    const res = await fetch(
+      `${API_URL}/api/proposals`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || "Submission failed");
     }
 
-    console.log("Proposal Submitted:", formData);
     setSubmitted(true);
-  };
+  } catch (err) {
+    console.error("Proposal submit error:", err);
+    alert("Submission failed. Please try again later.");
+  }finally {
+    setLoading(false);
+  }
+};
+
 
   /* ----------------------------------
      CONFIRMATION STATE
@@ -104,7 +130,7 @@ export default function ProjectProposalForm({ onClose }) {
           </p>
         </header>
 
-        <form onSubmit={handleSubmit} className="space-y-20">
+        <form onSubmit={handleSubmit} className={`space-y-20 ${loading ? "pointer-events-none" : ""}`}>
 
           {/* SECTION 1 */}
           <section>
@@ -167,7 +193,7 @@ export default function ProjectProposalForm({ onClose }) {
                 <option>10k–50k</option>
                 <option>50k–250k</option>
                 <option>250k–1M</option>
-                <option>5M+</option>
+                <option>1M-5M+</option>
               </select>
             </div>
           </section>
@@ -286,6 +312,7 @@ export default function ProjectProposalForm({ onClose }) {
           {/* CTA */}
        <button
   type="submit"
+    disabled={loading}
   className="
     w-full
     mt-8 sm:mt-20
@@ -297,7 +324,7 @@ export default function ProjectProposalForm({ onClose }) {
     transition-transform duration-300
   "
 >
-  SUBMIT TREATMENT FOR REVIEW
+   {loading ? "SENDING TREATMENT…" : "SUBMIT TREATMENT FOR REVIEW"}
 </button>
 
 

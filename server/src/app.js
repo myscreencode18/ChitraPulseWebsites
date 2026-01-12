@@ -4,8 +4,14 @@ import cors from "cors";
 import proposalRoutes from "./routes/proposal.routes.js";
 
 const app = express();
-
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",                  // dev
+    ],
+    methods: ["GET", "POST"],
+  })
+);
 app.use(express.json());
 
 app.use("/api/proposals", proposalRoutes);
