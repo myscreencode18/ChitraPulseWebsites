@@ -9,6 +9,8 @@ app.set("trust proxy", 1);
 app.use(
   cors({
     origin: [
+       "https://chitrapulse.com",
+      "https://www.chitrapulse.com",
       "http://localhost:5173",   
       "https://chitra-pulse-websites.vercel.app"               // dev
     ],
