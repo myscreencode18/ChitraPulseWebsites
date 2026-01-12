@@ -10,9 +10,9 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",   
-      "https://chitra-pulse-websites.vercel.app/"               // dev
+      "https://chitra-pulse-websites.vercel.app"               // dev
     ],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST" , "OPTIONS"],
   })
 );
 app.use(express.json());
