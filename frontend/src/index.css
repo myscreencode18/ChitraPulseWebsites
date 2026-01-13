@@ -141,6 +141,7 @@ body::before {
   background-clip: text;
 
   mix-blend-mode: screen;
+   filter: contrast(1.2) saturate(1.2);
 }
 
 /* Line wrapper (for animation control) */
@@ -281,6 +282,7 @@ body::before {
   right: 16px;
   font-size: 24px;
   opacity: 0;
+  color: black;
 }
 
 /* BASE */

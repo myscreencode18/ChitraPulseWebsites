@@ -13,7 +13,7 @@ function FinalCTA() {
             w-10 h-10 sm:w-12 sm:h-12
             flex items-center justify-center
             rounded-full
-            border border-yellow-500/40
+            border border-yellow-400
             text-yellow-400
             bg-black
             transition-all duration-300

@@ -85,12 +85,19 @@ const ConflictSection = () => {
         {/* RIGHT — PHONE */}
         <div className="relative flex items-center justify-center">
           <div className="iphone-wrapper">
-            <img
+            {/* <img
               src="/images/creator-video.jpg"
               alt="Creator video"
               className="iphone-video"
-            />
-
+            /> */}
+<video
+  src="/videos/creator-video.mp4"   // <-- your video file path
+  className="iphone-video"
+  autoPlay
+  muted
+  loop
+  playsInline
+/>
             <div className="link-overlay">
               <ul>
                 <li>Instagram</li>

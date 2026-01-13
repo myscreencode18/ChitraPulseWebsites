@@ -16,9 +16,9 @@ export default function PipelineSection() {
       /* Center line progress */
       gsap.fromTo(
         lineRef.current,
-        { scaleY: 0 },
+        { height: 0 },
         {
-          scaleY: 1,
+          height: "100%",
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -26,7 +26,7 @@ export default function PipelineSection() {
             end: "bottom bottom",
             scrub: true,
           },
-          transformOrigin: "top",
+          transformOrigin: "top center",
         }
       );
 
@@ -51,7 +51,22 @@ export default function PipelineSection() {
             });
 
             icon.innerText = "✅";
+
+              },
+          onLeaveBack: () => {
+            gsap.to(phase, {
+              opacity: 0.5,
+              color: "#9ca3af",
+              duration: 0.4,
+            });
+
+            gsap.to(icon, {
+              scale: 1,
+              color: "#9ca3af",
+              duration: 0.3,
+            });
           },
+          
         });
       });
     }, sectionRef);
@@ -68,10 +83,11 @@ export default function PipelineSection() {
 
       <div className="relative max-w-6xl mx-auto mt-32">
         {/* Center Line */}
-        <div className="absolute left-1/2 top-0 h-full w-px bg-neutral-800" />
+        <div className="absolute left-1/2 top-0 h-full w-px bg-neutral-800 -translate-x-1/2" />
         <div
           ref={lineRef}
-          className="absolute left-1/2 top-0 h-full w-px bg-red-500 origin-top"
+          className="absolute left-1/2 top-0  w-px bg-red-500 origin-top -translate-x-1/2 z-10"
+        style={{ height: "100%",transformOrigin: "top"  }}
         />
 
         <PipelinePhase

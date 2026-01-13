@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import gsap from "../utils/gsapDefaults";
 import { Play } from "lucide-react"
 export default function HeroScene() {
-  // simple time counter (will refine later)
+ 
   const [seconds, setSeconds] = useState(0);
 const titleRef = useRef(null);
 const curtainRef = useRef(null);
@@ -74,7 +74,7 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-  // Disable on touch devices
+
   if ("ontouchstart" in window) return;
 
   const handleMouseMove = (e) => {
@@ -168,6 +168,15 @@ cta.addEventListener("mouseleave", () => {
   };
 }, []);
 
+const handleCTAClick = () => {
+  gsap.to(window, {
+    scrollTo: "#showreel",
+    duration: 1.6,
+    ease: "power4.inOut",
+  });
+};
+
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-[var(--color-bg-primary)]">
       {/* CURTAIN INTRO */}
@@ -195,7 +204,7 @@ cta.addEventListener("mouseleave", () => {
 
       {/* TOP BAR */}
       <div className="absolute top-6 left-6 text-sm tracking-widest">
-        STUDIO NAME
+        ChitraPulse
       </div>
 
       <div className="absolute top-6 right-6 flex items-center gap-2 text-sm">
@@ -240,7 +249,7 @@ cta.addEventListener("mouseleave", () => {
       playsInline
     />
 
-    <h1 ref={titleRef}  className="hero-title">
+    <h1 ref={titleRef}  className="hero-title font-[var(--font-display])">
       <span className="line">STOP AUDITIONING.</span>
       <span className="line">START DIRECTING.</span>
     </h1>
@@ -268,7 +277,7 @@ cta.addEventListener("mouseleave", () => {
 </div> */}
 
 {/* CTA */}
-<div ref={ctaRef} className="cta-circle group relative mt-12 flex h-12 w-72 cursor-pointer items-center justify-center rounded-4xl border border-accent text-center">
+<div ref={ctaRef} onClick={handleCTAClick} className="cta-circle group relative mt-12 flex h-12 w-72 cursor-pointer items-center justify-center rounded-4xl border border-accent text-center">
   
 
 

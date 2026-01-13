@@ -73,10 +73,10 @@ useSmoothScroll(showForm);
         </div>
 
        <div className="text-[10px] sm:text-xs text-center leading-relaxed px-4">
-  © 2026 AURORA STUDIO
+  © 2026 ChitraPulse
   <br className="sm:hidden" />
   <span className="hidden sm:inline"> — </span>
-  INQUIRIES: hello@aurorastudio.com
+  INQUIRIES: hello@chitrapulse.com
 </div>
 
       </footer>

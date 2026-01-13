@@ -80,7 +80,7 @@ export default function SectionVision() {
           <article className="vision-panel">
             <div className="panel-media parallax-bg">
               <video
-                src="/videos/silk.mp4"
+                src="/videos/Scene-1.mov"
                 muted
                 loop
                 autoPlay
@@ -108,15 +108,15 @@ export default function SectionVision() {
               </p>
             </div>
             <div className="panel-media split parallax-bg">
-              <img src="/images/before.jpg" alt="Before" />
-              <img src="/images/after.jpg" className="cinematic" alt="After" />
+              <img src="/images/Scene-22.png" alt="Before" />
+              <img src="/images/Scene-22.png" className="cinematic" alt="After" />
             </div>
           </article>
 
           {/* SCENE C */}
           <article className="vision-panel">
             <div className="panel-media parallax-bg">
-              <img src="/images/storyboard-ui.png" alt="Narrative UI" />
+              <img src="/images/Scene-3.png" alt="Narrative UI" />
             </div>
             <div className="panel-copy">
               <h2>The Narrative Arc.</h2>
